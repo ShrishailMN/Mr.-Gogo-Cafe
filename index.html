@@ -5,34 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mr. Gogo Cafe | Home</title>
 
-<style>
-    body{
-        background-color: black;
-        font-family: 'Poppins', sans-serif;
-    }
-    hr {
-        color: white;
-        margin: 20px;
-    }
-    nav {
-            text-align: center;
-            margin-bottom: 30px;
-            margin-top: 20px;
+    <style>
+        body {
+            background-color: black;
+            font-family: 'Poppins', sans-serif;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
         }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px; /* Reduce margin */
+            margin-top: 10px; /* Reduce margin */
+        }
+
         nav ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
         }
+
         nav li {
             display: inline-block;
             margin: 0 10px;
         }
-        
-    nav a{
-        color: black;
-        background-color: white;
-        padding: 10px 20px;
+
+        nav a {
+            color: black;
+            background-color: white;
+            padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s, color 0.3s; /* Smooth transition effect */
@@ -44,35 +45,113 @@
             color: white;
         }
 
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            nav ul {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
+        .text-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto; /* Center the box */
+            width: 80%; /* Set a fixed width for desktop */
+            max-width: 600px; /* Max width for large screens */
+            min-height: 100px; /* Set a minimum height */
+            text-align: center;
+            overflow: hidden; /* Prevent text overflow */
+            animation: fade-in 1s ease-out, typing 3.5s steps(40, end) 1s; /* Added fade-in animation and delay for typing */
+        }
 
-            nav li {
-                margin: 10px;
+        #typewriter-text {
+            height: auto; /* Let the height adjust dynamically */
+            max-height: 200px; /* Set a maximum height */
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
             }
         }
 
-    
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
 
-</style>
+        @keyframes blink-caret {
+            from,
+            to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: orange;
+            }
+        }
+
+        img {
+            display: block; /* Center the image */
+            margin: 20px auto; /* Center the image */
+            max-width: 100%; /* Ensure image doesn't overflow */
+        }
+
+        hr {
+            color: white;
+            margin: 20px;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .text-container {
+                width: 90%; /* Adjust width for smaller screens */
+            }
+        }
+    </style>
 </head>
 <body>
-<center><img src="gogo-cafe-white.png" width="200px"</center>
-<nav>
-    <ul>
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="#">Menu</a></li>
-        <li><a href="#">About</a></li>
-    </ul>
-    
-</nav>
-<hr>
-    <p></p>
-    
+    <center><img src="gogo-cafe-white.png" width="200px"></center>
+    <nav>
+        <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+    <hr>
+    <div class="text-container">
+        <p id="typewriter-text"></p>
+    </div>
+
+    <script>
+        const text = "Welcome to Mr. Gogo Cafe! Delicious treats await you. Explore our menu and enjoy the cozy ambiance. Visit us today!";
+        const textElement = document.getElementById("typewriter-text");
+        const maxHeight = 200; // Maximum height for the text container
+
+        let index = 0;
+
+        function typeWriter() {
+            if (index < text.length) {
+                textElement.textContent += text.charAt(index);
+                index++;
+                adjustHeight(); // Adjust height dynamically
+                setTimeout(typeWriter, 100); // Change the delay as needed
+            }
+        }
+
+        function adjustHeight() {
+            // Calculate the height of the text container based on the content
+            const lineHeight = parseInt(window.getComputedStyle(textElement).lineHeight);
+            const numLines = Math.ceil(textElement.clientHeight / lineHeight);
+            const newHeight = Math.min(numLines * lineHeight, maxHeight);
+            textElement.style.height = newHeight + "px";
+        }
+
+        // Start the typewriting effect
+        window.onload = function () {
+            typeWriter();
+        }
+    </script>
 </body>
 </html>
