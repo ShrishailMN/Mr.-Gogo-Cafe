@@ -63,6 +63,42 @@
             max-height: 200px; /* Set a maximum height */
         }
 
+        .popular-dishes-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .popular-dish {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .popular-dish img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        .menu-button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .menu-button:hover {
+            background-color: #666;
+        }
+
+        .menu-icon {
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
         @keyframes typing {
             from {
                 width: 0;
@@ -107,6 +143,11 @@
             .text-container {
                 width: 90%; /* Adjust width for smaller screens */
             }
+
+            .popular-dish img {
+                width: 100%;
+                height: auto;
+            }
         }
     </style>
 </head>
@@ -123,6 +164,232 @@
     <div class="text-container">
         <p id="typewriter-text"></p>
     </div>
+
+    <div class="popular-dishes-container">
+        <div class="popular-dish">
+            <img src="dish1.jpg" alt="Popular Dish 1">
+        </div>
+        <div class="popular-dish">
+            <img src="dish2.jpg" alt="Popular Dish 2">
+        </div>
+        <div class="popular-dish">
+            <img src="dish3.jpg" alt="Popular Dish 3">
+        </div>
+    </div>
+
+    <a href="#" class="menu-button">Menu <img src="menu-icon.png" alt="Menu Icon" class="menu-icon"></a>
+
+    <script>
+        const text = "Welcome to Mr. Gogo Cafe! Delicious treats await you. Explore our menu and enjoy the cozy ambiance. Visit us today!";
+        const textElement = document.getElementById("typewriter-text");
+        const maxHeight = 200; // Maximum height for the text container
+
+        let index = 0;
+
+        function typeWriter() {
+            if (index < text.length) {
+                textElement.textContent += text.charAt(index);
+                index++;
+                adjustHeight(); // Adjust height dynamically
+                setTimeout(typeWriter, 100); // Change the delay as needed
+            }
+        }
+
+        function adjustHeight() {
+            // Calculate the height of the text container based on the content
+            const lineHeight = parseInt(window.getComputedStyle(textElement).lineHeight);
+            const numLines = Math.ceil(textElement.clientHeight / lineHeight);
+            const newHeight = Math.min(numLines * lineHeight, maxHeight);
+            textElement.style.height = newHeight + "px";
+        }
+
+        // Start the typewriting effect
+        window.onload = function () {
+            typeWriter();
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Gogo Cafe | Home</title>
+
+    <style>
+        body {
+            background-color: black;
+            font-family: 'Poppins', sans-serif;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px; /* Reduce margin */
+            margin-top: 10px; /* Reduce margin */
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        nav a {
+            color: black;
+            background-color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition effect */
+        }
+
+        nav a:hover,
+        nav a.active {
+            background-color: #333; /* Lighter shade of orange on hover and active state #ff7043 */
+            color: white;
+        }
+
+        .text-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto; /* Center the box */
+            width: 80%; /* Set a fixed width for desktop */
+            max-width: 600px; /* Max width for large screens */
+            min-height: 100px; /* Set a minimum height */
+            text-align: center;
+            overflow: hidden; /* Prevent text overflow */
+            animation: fade-in 1s ease-out, typing 3.5s steps(40, end) 1s; /* Added fade-in animation and delay for typing */
+        }
+
+        #typewriter-text {
+            height: auto; /* Let the height adjust dynamically */
+            max-height: 200px; /* Set a maximum height */
+        }
+
+        .popular-dishes-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .popular-dish {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .popular-dish img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        .menu-button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .menu-button:hover {
+            background-color: #666;
+        }
+
+        .menu-icon {
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes blink-caret {
+            from,
+            to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: orange;
+            }
+        }
+
+        img {
+            display: block; /* Center the image */
+            margin: 20px auto; /* Center the image */
+            max-width: 100%; /* Ensure image doesn't overflow */
+        }
+
+        hr {
+            color: white;
+            margin: 20px;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .text-container {
+                width: 90%; /* Adjust width for smaller screens */
+            }
+
+            .popular-dish img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <center><img src="gogo-cafe-white.png" width="200px"></center>
+    <nav>
+        <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+    <hr>
+    <div class="text-container">
+        <p id="typewriter-text"></p>
+    </div>
+
+    <div class="popular-dishes-container">
+        <div class="popular-dish">
+            <img src="dish1.jpg" alt="Popular Dish 1">
+        </div>
+        <div class="popular-dish">
+            <img src="dish2.jpg" alt="Popular Dish 2">
+        </div>
+        <div class="popular-dish">
+            <img src="dish3.jpg" alt="Popular Dish 3">
+        </div>
+    </div>
+
+    <a href="#" class="menu-button">Menu <img src="menu-icon.png" alt="Menu Icon" class="menu-icon"></a>
 
     <script>
         const text = "Welcome to Mr. Gogo Cafe! Delicious treats await you. Explore our menu and enjoy the cozy ambiance. Visit us today!";
