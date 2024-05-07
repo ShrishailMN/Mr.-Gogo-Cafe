@@ -1,0 +1,420 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Gogo Cafe | Menu</title>
+
+    <style>
+        body {
+            background-color: black;
+            font-family: 'Poppins', sans-serif;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            color: white; /* Change text color to white */
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px; /* Reduce margin */
+            margin-top: 10px; /* Reduce margin */
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        nav a {
+            color: white; /* Change link color to white */
+            background-color: #333; /* Darker background color */
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition effect */
+        }
+
+        nav a:hover,
+        nav a.active {
+            background-color: #555; /* Darker shade on hover and active state */
+        }
+
+        .menu-container {
+            padding: 20px;
+            margin: 20px auto; /* Center the container */
+            width: 80%; /* Set a fixed width for desktop */
+            max-width: 600px; /* Max width for large screens */
+        }
+
+        .menu-item {
+            border-bottom: 1px solid #666; /* Darker border color */
+            padding: 10px 0;
+            display: flex; /* Use flexbox to align items */
+            align-items: center; /* Align items vertically */
+        }
+
+        .menu-item:last-child {
+            border-bottom: none; /* Remove border for the last item */
+        }
+
+        .menu-item h3 {
+            margin-top: 0; /* Remove top margin for consistency */
+        }
+
+        .menu-item p {
+            margin-bottom: 0; /* Remove bottom margin for consistency */
+        }
+
+        .menu-item img {
+            margin-right: 20px; /* Add space between image and text */
+            max-width: 100px; /* Limit image width */
+            border-radius: 5px; /* Apply border-radius to images */
+        }
+
+        .menu-item-buttons {
+            margin-left: auto; /* Push buttons to the right */
+        }
+
+        .menu-item-buttons button {
+            background-color: #333;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .menu-item-buttons button:hover {
+            background-color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .menu-container {
+                width: 90%; /* Adjust width for smaller screens */
+            }
+        }
+        h1{
+            margin-left: 20px;
+        }
+        .menu-Title {
+            background-color: white;
+            margin-left: 30px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            padding-left: 15px;
+            border-radius: 5px;
+            color: black;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+        }
+        footer img {
+            width: 100px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <center><img src="gogo-cafe-white.png" width="200px"></center>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html" class="active">Menu</a></li>
+            <li><a href="about_us.html">About</a></li>
+        </ul>
+    </nav>
+
+<br>
+<hr>
+<center><h1>Menu <img src="icons8-dish-91.png" width="50px"></h1></center>
+<hr>
+<div class="menu-Title">
+    <p>Fries</p>
+</div>
+    <div class="menu-container">
+        <div class="menu-item">
+            <img src="fries/cheese fries.jpeg" alt="Specialty Coffee">
+            <div>
+                <h3>Cheese Fries</h3>
+                <h3><!Rupees Symbol> 129/-</h3>
+                <p>Enjoy our cheesy fries: crispy, golden, and loaded with gooey melted cheese for a delicious treat!</p>
+            <div class="menu-item-buttons">
+                <button>Order</button>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+
+<!-- Checkout button -->
+<button id="checkout-button">Checkout</button>
+</div>
+        </div>
+
+        <div class="menu-item">
+            <img src="fries/tandoori fries.jpeg" alt="Smoked Salmon Bagel">
+            <div>
+                <h3>Tandoori Fries</h3>
+                <h3><!Rupees Symbol> 99/-</h3>
+                <p>Discover our Tandoori fries: crispy, seasoned with aromatic spices, and bursting with flavor!</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button>Order</button>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <img src="fries/periperi fries.jpeg">
+            <div>
+                <h3>Peri Peri Fries</h3>
+                <h3><!Rupees Symbol> 89/-</h3>
+                <p>Satisfy your cravings with our Peri Peri fries, perfectly seasoned for a spicy and flavorful kick!</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button>Order</button>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <img src="fries/salty fries.jpeg">
+            <div>
+                <h3>Salty Fries</h3>
+                <h3><!Rupees Symbol> 79/-</h3>
+                <p>Indulge in our Salty Fries: crispy and seasoned just right for a savory delight!</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button>Order</button>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <img src="fries/nuggets.jpeg" alt="Smoked Salmon Bagel">
+            <div>
+                <h3>Nuggets</h3>
+                <h3><!Rupees Symbol> 99/-</h3>
+                <p>Delight in our crispy and flavorful nuggets, perfect for a quick and satisfying bite!</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button>Order</button>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        
+
+<div class="menu-Title">
+    <p>Frankie Roll</p>
+</div>
+    <div class="menu-container">
+        <div class="menu-item">
+            <img src="fries/veg frankie.jpg" alt="Specialty Coffee">
+            <div>
+                <h3>Veg Frankie</h3>
+                <h3><!Rupees Symbol> 79/-</h3>
+                <p>Savor our Veg Frankie, a delectable fusion of veggies and spices wrapped in a warm, soft roll.</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button>Order</button>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        
+            <div class="menu-item">
+                <img src="fries/paneer frankie.jpg" alt="Specialty Coffee">
+                <div>
+                    <h3>Paneer Frankie</h3>
+                    <h3><!Rupees Symbol> 89/-</h3>
+                    <p>Enjoy our Paneer Frankie, a delicious blend of tender paneer and flavorful spices wrapped in a warm, soft roll.</p>
+                </div>
+                <div class="menu-item-buttons">
+                    <button>Order</button>
+                    <button>Add to Cart</button>
+                </div>
+            </div> 
+</div>
+
+<div class="menu-Title">
+    <p>Sandwich</p>
+</div>
+    <div class="menu-container">
+        <div class="menu-item">
+            <img src="fries/veg sandwich.jpg" alt="Specialty Coffee">
+            <div>
+                <h3>Veg Sandwich</h3>
+                <h3><!Rupees Symbol> 79/-</h3>
+                <p>Savor our Veg Sandwich, packed with fresh veggies for a delightful snack on-the-go.</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button>Order</button>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <img src="fries/veg mayo sandwich.jpeg" alt="Specialty Coffee">
+            <div>
+                <h3>Veg Mayo Sandwich</h3>
+                <h3><!Rupees Symbol> 85/-</h3>
+                <p>Indulge in our Veg Mayo Sandwich, a creamy and flavorful delight for your taste buds.</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button>Order</button>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+       
+        <div class="menu-item">
+            <img src="fries/corn sandwich.jpg" alt="Specialty Coffee">
+            <div>
+                <h3>Corn Sandwich</h3>
+                <h3><!Rupees Symbol> 89/-</h3>
+                <p>Try our Corn Sandwich, a tasty blend of sweet corn and savory flavors in every bite.</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button>Order</button>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <img src="fries/corn paneer sandwich.jpeg" alt="Specialty Coffee">
+            <div>
+                <h3>Corn Mayo Sandwich</h3>
+                <h3><!Rupees Symbol> 89/-</h3>
+                <p>Experience our Corn Mayo Sandwich, a creamy and flavorful delight with a hint of sweetness.</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button>Order</button>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="menu-item">
+            <img src="fries/paneer sandwich.jpg" alt="Specialty Coffee">
+            <div>
+                <h3>Paneer Sandwich</h3>
+                <h3><!Rupees Symbol> 89/-</h3>
+                <p>Enjoy our Paneer Sandwich, a delicious fusion of soft paneer and fresh veggies for a satisfying meal.</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button>Order</button>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="fries/corn paneer sandwich.jpeg" alt="Specialty Coffee">
+            <div>
+                <h3>Corn Paneer Sandwich</h3>
+                <h3><!Rupees Symbol> 101/-</h3>
+                <p>Delight in our Corn Paneer Sandwich, a tasty combination of creamy paneer and sweet corn for a flavorful bite.</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button>Order</button>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+<!-- Repeat similar structure for other menu items -->
+</div>
+    
+
+    <footer>
+        <p>Powered by: <a href="https://github.com/vighneshshetty002"><img src="VS Tech.png" alt="Logo"></a></p>
+    </footer>
+    
+    <script>
+// Define an array to store cart items
+        const cartItems = [];
+
+        // Function to handle ordering the veg pizza
+        function orderVegPizza() {
+            // Define the order details
+            const itemName = "Veg Pizza";
+            const itemPrice = "109/-";
+
+            // Construct the email content
+            const emailContent = `Order Details:\n\nItem: ${itemName}\nPrice: ${itemPrice}`;
+
+            // Define the recipient email address
+            const recipientEmail = 'vighneshshetty002@gmail.com';
+
+            // Send the email
+            window.location.href = `mailto:${recipientEmail}?subject=Order%20${itemName}&body=${encodeURIComponent(emailContent)}`;
+        }
+
+        // Add event listener to the order button of the veg pizza
+        const vegPizzaOrderButton = document.querySelector('.menu-item:nth-child(1) .menu-item-buttons button:nth-child(1)');
+        vegPizzaOrderButton.addEventListener('click', orderVegPizza);
+
+        // Function to handle ordering the kulhad pizza
+        function orderKulhadPizza() {
+            // Define the order details
+            const itemName = "Kulhad Pizza";
+            const itemPrice = "199/-";
+
+            // Construct the email content
+            const emailContent = `Order Details:\n\nItem: ${itemName}\nPrice: ${itemPrice}`;
+
+            // Define the recipient email address
+            const recipientEmail = 'vighneshshetty002@gmail.com';
+
+            // Send the email
+            window.location.href = `mailto:${recipientEmail}?subject=Order%20${itemName}&body=${encodeURIComponent(emailContent)}`;
+        }
+
+        // Add event listener to the order button of the kulhad pizza
+        const kulhadPizzaOrderButton = document.querySelector('.menu-item:nth-child(2) .menu-item-buttons button:nth-child(1)');
+        kulhadPizzaOrderButton.addEventListener('click', orderKulhadPizza);
+
+        // Function to handle adding items to the cart
+        function addToCart(event) {
+            // Get the menu item details
+            const menuItem = event.target.closest('.menu-item');
+            const itemName = menuItem.querySelector('h3').innerText;
+            const itemPrice = menuItem.querySelector('h3:last-child').innerText;
+
+            // Construct item object
+            const item = {
+                itemName: itemName,
+                itemPrice: itemPrice
+            };
+
+            // Add item to cart
+            cartItems.push(item);
+
+            // Show pop-up message for the first item added to the cart
+            if (cartItems.length === 1) {
+                alert('Item added to cart!');
+            }
+        }
+
+        // Add event listener to "Add to Cart" buttons of Veg Pizza and Kulhad Pizza
+        const addToCartButtons = document.querySelectorAll('.menu-item-buttons button:nth-child(2)');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', addToCart);
+        });
+    </script>
+    </script>
+
+
+
+</body>
+</html>
+
