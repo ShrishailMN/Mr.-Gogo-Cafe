@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Gogo Cafe | Menu</title>
+    <style>
+        /* Resetting default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            padding-bottom: 50px; /* Adding space for the footer */
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        nav a {
+            color: white; /* Changed link color */
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background-color: #555;
+        }
+
+        .search-bar {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: 80%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .menu-container {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .menu-item {
+            border-bottom: 1px solid #666;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Added gap for spacing */
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item img {
+            margin-right: 20px;
+            max-width: 100px;
+            border-radius: 5px;
+        }
+
+        .menu-item-buttons {
+            margin-left: auto;
+            gap: 10px; /* Added gap for spacing */
+        }
+
+        .menu-item-buttons button {
+            background-color: white;
+            color: black;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .menu-item-buttons button:hover {
+            background-color: #555;
+            color: white; /* Added hover color for buttons */
+        }
+
+        .status-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background-color: white;
+            color: black;
+            text-align: center;
+            line-height: 50px;
+            z-index: 10000;
+            display: none;
+            animation: slideIn 0.5s ease-out, slideOut 0.5s 2.5s ease-in forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes slideOut {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+
+        /* Popup styles */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: black; /* Adjusted background color */
+            border: 1px solid white;
+            border-radius: 15px;
+            padding: 20px;
+            z-index: 1001;
+            color: white;
+            width: 80%; /* Adjusted width */
+            max-height: 100%; /* Adjusted max-height */
+            overflow-y: auto;
+        }
+
+        .popup h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .popup-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px; /* Added gap for spacing */
+        }
+
+        .popup-content p {
+            margin: 10px 0;
+        }
+
+        /* Footer styling */
+        footer {
+            text-align: center;
+            padding: 0px 0; /* Reduced padding vertically */
+            background-color: black; /* Adjusted background color */
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%; /* Adjusted width to fit the screen horizontally */
+            font-size: 12px; /* Reduced font size */
+            z-index: 9999; /* Ensure it's above the popup */
+        }
+
+        footer img {
+            width: 60px;
+            vertical-align: middle;
+        }
+
+        /* View Cart Button */
+        #popupBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            z-index: 10000;
+        }
+
+        #popupBtn:hover {
+            background-color: #555;
+        }
+
+        .popup button {
+            margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .popup button:hover {
+            background-color: #555;
+            color: white;
+        }
+
+        /* Adjusted buttons in the popup */
+        .popup-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .popup-buttons button {
+            flex: 1;
+            margin: 0 5px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .menu-item-buttons button {
+                margin-top: 10px; /* Added space between buttons */
+            }
+            .popup-item {
+                width: 100%;
+            }
+        }
+
+        /* Added styles for popup items */
+        .popup-item {
+            width: 100%; /* Ensure the item takes up the full width */
+            display: flex; /* Use flexbox layout */
+            justify-content: space-between; /* Align items with space between them */
+            align-items: center; /* Align items vertically */
+            padding: 10px; /* Added padding for spacing */
+            border-bottom: 1px solid #666; /* Added border for separation */
+        }
+
+        .popup-item:last-child {
+            border-bottom: none; /* Remove border from the last item */
+        }
+
+        .popup-total {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+    <!-- Add EmailJS SDK -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("ZTLLkEu2m9zcOrE1i");
+        })();
+    </script>
+</head>
+<body>
+    <center><img src="gogo-cafe-white.png" width="200px"></center>
+    <nav>
+        <ul>
+            <li><a href="https://vighneshshetty002.github.io/Mr.-Gogo-Cafe/">Home</a></li>
+            <li><a href="https://vighneshshetty002.github.io/Mr.-Gogo-Cafe/menu.html" class="active">Menu</a></li>
+            <li><a href="https://vighneshshetty002.github.io/Mr.-Gogo-Cafe/about_us.html">About</a></li>
+        </ul>
+    </nav>
+
+    <hr>
+    <center><h1>Menu <img src="Menu Food images/menu icon.png" width="50px"></h1></center>
+    <hr>
+
+    <!-- Search bar -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search for your favorite dishes...">
+    </div>
+
+    <div class="menu-Title">
+        <p>Pizzas</p>
+    </div>
+    <div class="menu-container" id="menuContainer">
+        <div class="menu-item">
+            <img src="Menu Food images/1.png" alt="Pizza" />
+            <div>
+                <h2>Veg Pizza</h2>
+                <p>109/-</p>
+                <p>A savory delight featuring a medley of<br> fresh vegetables atop a crispy crust.</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button onclick="orderItem('Veg Pizza', 109)">Order</button>
+                <button onclick="addToCart('Veg Pizza', 109)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="Menu Food images/2.png" alt="Pizza" />
+            <div>
+                <h2>Kulhad Pizza</h2>
+                <p>199/-</p>
+                <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button onclick="orderItem('Kulhad Pizza', 199)">Order</button>
+                <button onclick="addToCart('Kulhad Pizza', 199)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="Menu Food images/2.png" alt="Pizza" />
+            <div>
+                <h2>Corn Pizza</h2>
+                <p>129/-</p>
+                <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button onclick="orderItem('Corn Pizza', 129)">Order</button>
+                <button onclick="addToCart('Corn Pizza', 129)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="Menu Food images/2.png" alt="Pizza" />
+            <div>
+                <h2>Panner Pizza</h2>
+                <p>129/-</p>
+                <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button onclick="orderItem('Paneer Pizza', 129)">Order</button>
+                <button onclick="addToCart('Paneer Pizza', 129)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="Menu Food images/2.png" alt="Pizza" />
+            <div>
+                <h2>Olive Pizza</h2>
+                <p>149/-</p>
+                <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button onclick="orderItem('Olive Pizza', 149)">Order</button>
+                <button onclick="addToCart('Olive Pizza', 149)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="Menu Food images/2.png" alt="Pizza" />
+            <div>
+                <h2>Jaba Peno Pizza</h2>
+                <p>149/-</p>
+                <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button onclick="orderItem('Jaba Peno Pizza', 149)">Order</button>
+                <button onclick="addToCart('Jaba Peno Pizza', 149)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="Menu Food images/2.png" alt="Pizza" />
+            <div>
+                <h2>Margherita Pizza</h2>
+                <p>149/-</p>
+                <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+            </div>
+            <div class="menu-item-buttons">
+                <button onclick="orderItem('Margarita Pizza', 149)">Order</button>
+                <button onclick="addToCart('Margarita Pizza', 149)">Add to Cart</button>
+            </div>
+        </div>
+
+
+        <!-- Add more menu items as needed -->
+    <br>
+    <br><br>
+    <div class="menu-Title">
+        <p>Burgers</p>
+    </div>
+    <br><br>
+    <div class="menu-item" id="menuContainer">
+        <img src="Menu Food images/1.png" alt="Pizza" />
+        <div>
+            <h2>Veg Burger</h2>
+            <p>90/-</p>
+            <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+        </div>
+        <div class="menu-item-buttons">
+            <button onclick="orderItem('Veg Burger', 90)">Order</button>
+            <button onclick="addToCart('Veg Burger', 90)">Add to Cart</button>
+        </div>
+    </div>
+    <div class="menu-item" id="menuContainer">
+        <img src="Menu Food images/1.png" alt="Pizza" />
+        <div>
+            <h2>Cheese Burger</h2>
+            <p>99/-</p>
+            <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+        </div>
+        <div class="menu-item-buttons">
+            <button onclick="orderItem('Cheese Pizza', 99)">Order</button>
+            <button onclick="addToCart('Cheese Pizza', 99)">Add to Cart</button>
+        </div>
+    </div>
+    <div class="menu-item" id="menuContainer">
+        <img src="Menu Food images/1.png" alt="Pizza" />
+        <div>
+            <h2>Paneer Burger</h2>
+            <p>99/-</p>
+            <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+        </div>
+        <div class="menu-item-buttons">
+            <button onclick="orderItem('Paneer Burger', 99)">Order</button>
+            <button onclick="addToCart('Paneer Burger', 99)">Add to Cart</button>
+        </div>
+    </div>
+    <div class="menu-item" id="menuContainer">
+        <img src="Menu Food images/1.png" alt="Pizza" />
+        <div>
+            <h2>Double Tikki Burger</h2>
+            <p>119/-</p>
+            <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+        </div>
+        <div class="menu-item-buttons">
+            <button onclick="orderItem('Double Tikki Burger', 119)">Order</button>
+            <button onclick="addToCart('Double Tikki Burger', 119)">Add to Cart</button>
+        </div>
+    </div>
+    <div class="menu-item" id="menuContainer">
+        <img src="Menu Food images/1.png" alt="Pizza" />
+        <div>
+            <h2>Loaded Burger</h2>
+            <p>149/-</p>
+            <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+        </div>
+        <div class="menu-item-buttons">
+            <button onclick="orderItem('Loaded Burger', 149)">Order</button>
+            <button onclick="addToCart('Loaded Burger', 149)">Add to Cart</button>
+        </div>
+    </div>
+    <br>
+    <br><br>
+    <div class="menu-Title">
+        <p>Fries</p>
+    </div>
+    <br><br>
+    <div class="menu-item" id="menuContainer">
+        <img src="Menu Food images/1.png" alt="Pizza" />
+        <div>
+            <h2>Cheese Fries</h2>
+            <p>129/-</p>
+            <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+        </div>
+        <div class="menu-item-buttons">
+            <button onclick="orderItem('Cheese fries', 129)">Order</button>
+            <button onclick="addToCart('Cheese fries', 129)">Add to Cart</button>
+        </div>
+    </div>
+    <div class="menu-item" id="menuContainer">
+        <img src="Menu Food images/1.png" alt="Pizza" />
+        <div>
+            <h2>Tandoori Fries</h2>
+            <p>99/-</p>
+            <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+        </div>
+        <div class="menu-item-buttons">
+            <button onclick="orderItem('Tandoori fries', 99)">Order</button>
+            <button onclick="addToCart('Tandoori fries', 99)">Add to Cart</button>
+        </div>
+    </div>
+    <div class="menu-item" id="menuContainer">
+        <img src="Menu Food images/1.png" alt="Pizza" />
+        <div>
+            <h2>Peri Peri Fries</h2>
+            <p>89/-</p>
+            <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+        </div>
+        <div class="menu-item-buttons">
+            <button onclick="orderItem('Peri Peri fries', 89)">Order</button>
+            <button onclick="addToCart('Peri Peri fries', 89)">Add to Cart</button>
+        </div>
+    </div>
+    <div class="menu-item" id="menuContainer">
+        <img src="Menu Food images/1.png" alt="Pizza" />
+        <div>
+            <h2>Salty Fries</h2>
+            <p>79/-</p>
+            <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+        </div>
+        <div class="menu-item-buttons">
+            <button onclick="orderItem('Salty fries', 79)">Order</button>
+            <button onclick="addToCart('Salty fries', 79)">Add to Cart</button>
+        </div>
+    </div>
+    <div class="menu-item" id="menuContainer">
+        <img src="Menu Food images/1.png" alt="Pizza" />
+        <div>
+            <h2>Nuggets</h2>
+            <p>99/-</p>
+            <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+        </div>
+        <div class="menu-item-buttons">
+            <button onclick="orderItem('Nuggets', 99)">Order</button>
+            <button onclick="addToCart('Nuggets', 99)">Add to Cart</button>
+        </div>
+    </div>
+
+    <br>
+    <br><br>
+    <div class="menu-Title">
+        <p>Frankie Roll</p>
+    </div>
+    <br><br>
+    <div class="menu-item" id="menuContainer">
+        <img src="Menu Food images/1.png" alt="Pizza" />
+        <div>
+            <h2>Veg Frankie</h2>
+            <p>79/-</p>
+            <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+        </div>
+        <div class="menu-item-buttons">
+            <button onclick="orderItem('Veg Frankie', 79)">Order</button>
+            <button onclick="addToCart('Veg Frankie', 79)">Add to Cart</button>
+        </div>
+    </div>
+    <div class="menu-item" id="menuContainer">
+        <img src="Menu Food images/1.png" alt="Pizza" />
+        <div>
+            <h2>Paneer Frankie</h2>
+            <p>89/-</p>
+            <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+        </div>
+        <div class="menu-item-buttons">
+            <button onclick="orderItem('Paneer Frankie', 89)">Order</button>
+            <button onclick="addToCart('Paneer Frankie', 89)">Add to Cart</button>
+        </div>
+    </div>
+
+    <br>
+    <br><br>
+    <div class="menu-Title">
+        <p>Sandwich</p>
+    </div>
+    <br><br>
+    <div class="menu-item" id="menuContainer">
+        <img src="Menu Food images/1.png" alt="Pizza" />
+        <div>
+            <h2>Veg Sandwich</h2>
+            <p>79/-</p>
+            <p>Freshly baked bagel topped with cream<br> cheese, smoked salmon, and capers.</p>
+        </div>
+        <div class="menu-item-buttons">
+            <button onclick="orderItem('Veg Frankie', 79)">Order</button>
+            <button onclick="addToCart('Veg Frankie', 79)">Add to Cart</button>
+        </div>
+    </div>
+        
+
+    <!-- Status bar -->
+    <div id="statusBar" class="status-bar"></div>
+
+    <!-- Popup overlay -->
+    <div id="popupOverlay" class="popup-overlay"></div>
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <h2>Cart</h2>
+        <div class="popup-content" id="popupContent"></div>
+        <div class="popup-total" id="popupTotal">Total: $0.00</div>
+        <div class="popup-buttons">
+            <button onclick="sendOrder()">Send Order</button>
+            <button onclick="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <!-- View Cart Button -->
+    <button id="popupBtn" onclick="togglePopup()">View Cart</button>
+
+    <footer>
+        <p>&copy; 2023 Mr. Gogo Cafe. All rights reserved.</p>
+        <p>Powered by <img src="https://yt3.googleusercontent.com/ytc/AGIKgqMU0OXDLP4RfKw6UBmYIuecq6nRXT00PocHGxyuQg=s900-c-k-c0x00ffffff-no-rj" width="20px"> Vighnesh</p>
+    </footer>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const menuContainer = document.getElementById('menuContainer');
+        const statusBar = document.getElementById('statusBar');
+        const popupOverlay = document.getElementById('popupOverlay');
+        const popup = document.getElementById('popup');
+        const popupContent = document.getElementById('popupContent');
+        const popupTotal = document.getElementById('popupTotal');
+        const popupBtn = document.getElementById('popupBtn');
+
+        let cart = [];
+
+        // Extract table number from URL
+        function getTableNumber() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('table') || 'unknown'; // default to 'unknown' if not found
+        }
+
+        const tableNumber = getTableNumber();
+
+        searchInput.addEventListener('input', filterMenu);
+
+        function filterMenu() {
+            const query = searchInput.value.toLowerCase();
+            const items = menuContainer.querySelectorAll('.menu-item');
+            items.forEach(item => {
+                const itemName = item.querySelector('h2').textContent.toLowerCase();
+                if (itemName.includes(query)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function showStatus(message) {
+            statusBar.textContent = message;
+            statusBar.style.display = 'block';
+            setTimeout(() => {
+                statusBar.style.display = 'none';
+            }, 3000);
+        }
+
+        function orderItem(name, price) {
+            const orderDetails = name;
+            const totalPrice = price.toFixed(2);
+            const orderDateTime = new Date().toLocaleString();
+            emailjs.send("service_8y2ru2g", "template_yrk4mbd", {
+                table_number: tableNumber,
+                order_details: orderDetails,
+                total_price: totalPrice,
+                order_date_time: orderDateTime
+            })
+            .then(function(response) {
+                showStatus('Order placed successfully!');
+            }, function(error) {
+                showStatus('Failed to place order. Please try again.');
+            });
+        }
+
+        function addToCart(name, price) {
+            const item = { name, price };
+            cart.push(item);
+            updateCart();
+            showStatus('Item added to cart.');
+        }
+
+        function updateCart() {
+            popupContent.innerHTML = '';
+            let total = 0;
+            cart.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('popup-item');
+                itemDiv.innerHTML = `
+                    <span>${item.name} - $${item.price.toFixed(2)}</span>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                `;
+                popupContent.appendChild(itemDiv);
+                total += item.price;
+            });
+            popupTotal.textContent = `Total: $${total.toFixed(2)}`;
+            popupBtn.style.display = cart.length > 0 ? 'block' : 'none';
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function togglePopup() {
+            const isVisible = popup.style.display === 'block';
+            popup.style.display = isVisible ? 'none' : 'block';
+            popupOverlay.style.display = isVisible ? 'none' : 'block';
+        }
+
+        function closePopup() {
+            popup.style.display = 'none';
+            popupOverlay.style.display = 'none';
+        }
+
+        function sendOrder() {
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            const orderDetails = cart.map(item => `${item.name} - $${item.price.toFixed(2)}`).join('<br/>');
+            const orderDateTime = new Date().toLocaleString();
+            emailjs.send("service_8y2ru2g", "template_yrk4mbd", {
+                table_number: tableNumber,
+                order_details: orderDetails,
+                total_price: total.toFixed(2),
+                order_date_time: orderDateTime
+            })
+            .then(function(response) {
+                showStatus('Order placed successfully!');
+                cart = [];
+                updateCart();
+                closePopup();
+            }, function(error) {
+                showStatus('Failed to place order. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>
