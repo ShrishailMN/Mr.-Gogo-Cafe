@@ -14,6 +14,42 @@ body {
     background-color: black;
 }
 
+nav {
+            background-color: white; /* Added background color to nav */
+            padding: 10px 0; /* Added padding for spacing */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Added shadow for effect */
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            
+            justify-content: center; /* Centered the nav items */
+            align-items: center;
+        }
+
+        nav li {
+            margin: 5px 3px; /* Adjusted margin for better spacing */
+        }
+
+        nav a {
+            color: black;
+            background-color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            white-space: nowrap; /* Prevents text from wrapping inside the button */
+        }
+
+        nav a:hover,
+        nav a.active {
+            background-color: #333;
+            color: white;
+        }
+    
 .container {
     max-width: 800px;
     margin: 20px auto;
@@ -42,9 +78,18 @@ h1, h2, p {
 }
 
 /* Social media links styles */
+.social-linksep {
+    margin-top: 50px;
+    margin-bottom: 150px;
+    border-top: 2px solid #ffffff; /* White border at the bottom of the image */
+    border-bottom: 2px solid #ffffff; /* White border at the bottom of the image */
+    padding: 10px;
+}
+
 .social-links {
     margin-top: 20px;
 }
+
 .social-links a {
     display: inline-block;
     margin-right: 10px;
@@ -87,13 +132,20 @@ h1, h2, p {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+
+
+
+     border-bottom: 2px solid #ffffff; /* White border at the bottom of the image */
+
+
+    
 }
 
 .event-card img {
     width: 100%;
     height: 200px; /* Adjust image height as needed */
     object-fit: cover;
-    border-bottom: 2px solid #ffffff; /* White border at the bottom of the image */
+    border-top: 4px solid white; /* White border at the bottom of the image */
     border-radius: 8px;
 }
 .event-card-content {
@@ -114,21 +166,51 @@ h1, h2, p {
 a{
     color: white;
 }
+
+ footer {
+        text-align: center;
+        padding: 0px 0; /* Reduced padding vertically */
+        background-color: black; /* Adjusted background color */
+        color: white;
+        position: fixed;
+        bottom: 0;
+        width: 100%; /* Adjusted width to fit the screen horizontally */
+        font-size: 12px; /* Reduced font size */
+        z-index: 9999; /* Ensure it's above the popup */
+    }
+
+    footer img {
+        width: 60px;
+        vertical-align: middle;
+    }
 </style>
 </head>
 <body>
 
+
+<center><img src="gogo-cafe-white.png" width="150px"></center>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="Specials.html">Specials</a></li>
+            <li><a href="about_us.html" class="active">About</a></li>
+        </ul>
+    </nav>
+    
+    
 <div class="container">
-    <h1>About Us</h1>
+    <hr>
     <p>Welcome to Mr.Gogo Cafe!</p>
     
     <p>At Mr.Gogo Cafe, we are passionate about delivering exceptional dining experiences. Our goal is to create a cozy and welcoming atmosphere where food lovers can indulge in delicious meals, refreshing beverages, and delightful desserts.</p>
-
+<hr>
+    <br/>
     <div class="map-container">
         <!-- Replace the "src" attribute with your Google Maps embed code -->
         <iframe src="https://maps.google.com/maps?q=GoGo+Cafe&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
-
+<hr>
     <h2>Contact Us</h2>
     <div class="contact-info">
         <p><strong>Phone:</strong> <a href="tel:+919844767619">+91-9844767619</a></p>
@@ -141,10 +223,11 @@ a{
             <a href="https://twitter.com/selfobsessedcafe" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
             <a href="https://www.facebook.com/selfobsessedcafe" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
         </div>
-        
+       
     </div>
 
     <p>Come visit us at Mr.Gogo Cafe and experience a blend of great food, warm ambiance, and friendly service. We look forward to serving you and making your dining experience memorable.</p>
+     <hr>
 </div>
 <br>
         <div class="container2">
@@ -153,10 +236,11 @@ a{
                 <!-- Event Cards -->
                 <div class="event-card">
                     <img src="https://images.pexels.com/photos/6299291/pexels-photo-6299291.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Birthday Party">
-                    <div class="event-card-content">
+                        <div class="event-card-content">
                         <div class="event-card-title">Birthday Party</div>
                         <div class="event-card-description">Make your special moments truly unforgettable with us! Explore our tailor-made celebration packages designed just for you.</div>
                     </div>
+                     
                 </div>
                  
                 <!-- Wedding Event Card -->
@@ -166,6 +250,7 @@ a{
                         <div class="event-card-title">Wedding</div>
                         <div class="event-card-description">Create magical moments on your big day. Discover our exquisite wedding venues and services tailored to perfection.</div>
                     </div>
+                    
                 </div>
         
                 <!-- Corporate Party Event Card -->
@@ -175,6 +260,7 @@ a{
                         <div class="event-card-title">Corporate Party</div>
                         <div class="event-card-description">Elevate your corporate events with our exceptional spaces and professional services. Impress your guests with style.</div>
                     </div>
+                     
                 </div>
 
                 <div class="event-card">
@@ -183,6 +269,7 @@ a{
                         <div class="event-card-title">Concerts</div>
                         <div class="event-card-description">Experience electrifying performances at our concert venues. Get ready to groove and make unforgettable memories.</div>
                     </div>
+                     
                 </div>
         
                 <!-- Exhibitions Event Card -->
@@ -192,6 +279,7 @@ a{
                         <div class="event-card-title">Exhibitions</div>
                         <div class="event-card-description">Explore creative and innovative exhibits at our exhibition spaces. Dive into the world of art, technology, and culture.</div>
                     </div>
+                     
                 </div>
         
                 <!-- Surprise Parties Event Card -->
@@ -201,6 +289,7 @@ a{
                         <div class="event-card-title">Surprise Parties</div>
                         <div class="event-card-description">Plan a memorable surprise party with us! From decorations to entertainment, we make every moment delightful.</div>
                     </div>
+                     
                 </div>
             </div>
         </div>
@@ -208,11 +297,13 @@ a{
     </div>
 </div>
 
-<center><div class="social-links">
-    <h4 style="color: white; margin: 5px;">Explore all the exciting details on our official pages below and book your dream event with us today!</h4>
+<center><div class="social-linksep">
+    <h4 style="color: white; margin: 5px;">Explore all the exciting details <br/> On our official pages below, <br/> Book your dream event with us today!</h4>
     <a href="https://www.instagram.com/mrgogoevents?igsh=MW53ZWcxNTh4d3o4Zw==" target="_blank"><i class="fab fa-instagram"></i></a>
     <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
 </div></center>
-
+<footer>
+    <p>Powered by <a href="https://github.com/Vighneshshetty002"><img src="VS Tech.png"></a></p>
+</footer>
 </body>
 </html>
